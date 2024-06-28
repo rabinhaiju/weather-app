@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { API_KEY } from './Components/Api';
 
 const App = () => {
   const [city,setCity] = useState('Kathmandu');
   const [weatherData,setWeatherData] = useState(null);
   const [inputCity,setInputCity] = useState('')
+
+  const KEY = API_KEY
 
   const currentDate = new Date();
   const months = [
@@ -16,11 +19,11 @@ const App = () => {
   const fullyear = currentDate.getFullYear();
   const formatedDate = `${month} ${day}, ${fullyear}`;
   
-  const API_KEY ='55b2313caa709b42ad17f983fc14303a'
+
 
   const getApi=async(cityName)=>{
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${KEY}&units=metric`);
       if (!response.ok) {
         throw new Error('City not found');
       }
@@ -44,7 +47,6 @@ const App = () => {
     
   }
 
-  
 
   return (
     <div className='bg-blue-900 h-[100vh] flex justify-center items-center'>
